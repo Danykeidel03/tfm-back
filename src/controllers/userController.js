@@ -77,8 +77,8 @@ const registerController = {
           } else {
             res.cookie("token", token, {
               httpOnly: true,
-              secure: false,
-              sameSite: "Lax",
+              secure: true,
+              sameSite: "None",
               maxAge: 3600000,
               path: "/",
             });
@@ -94,8 +94,8 @@ const registerController = {
         } else {
           res.cookie("token", token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "Lax",
+            secure: true,
+            sameSite: "None",
             maxAge: 3600000,
             path: "/",
           });
