@@ -16,6 +16,15 @@ app.use(
     credentials: true,
   })
 );
+
+app.use('/uploads', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://danykeidel03.github.io');
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+  next();
+});
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 app.use(express.json());
 app.use(helmet());
 app.use(cookieParser());
