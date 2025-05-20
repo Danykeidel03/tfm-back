@@ -19,13 +19,15 @@ app.use(
 );
 
 // Middleware para servir imágenes estáticas y añadir cabeceras CORS + CORP específicas para ellas
-app.use('/uploads', (req, res, next) => {
-  // Permitir sólo el origen del frontend
-  res.setHeader('Access-Control-Allow-Origin', 'https://danykeidel03.github.io');
-  // Política CORP para evitar bloqueos modernos de recursos cruzados
-  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
-  next();
-});
+app.use(
+  '/uploads',
+  (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://danykeidel03.github.io');
+    res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+    next();
+  },
+  express.static(path.join(__dirname, 'uploads'))
+);
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
