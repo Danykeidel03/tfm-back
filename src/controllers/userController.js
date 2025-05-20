@@ -16,15 +16,14 @@ const registerController = {
     ...createUserValidators,
     async (request, response) => {
       try {
-        const { name, mail, pass, role, weight, height, activity } =
-          request.body;
-        const photo = request.file;
+        const { name, mail, pass, role, weight, height, activity } = request.body;
+        const imageUrl = req.file.path;
         const data = await resgiterUser(
           name,
           mail,
           pass,
           role,
-          photo,
+          imageUrl,
           weight,
           height,
           activity

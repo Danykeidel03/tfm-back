@@ -5,21 +5,10 @@ const uploadDir = path.join(__dirname, '../../uploads/food');
 
 async function newFood(name, photo, calories, status) {
     try {
-        if(!photo || !photo.originalname || !photo.buffer){
-            const err = new Error('Foto no Valida');
-            err.code = 11001;
-            throw err;
-        };
-
-        const photoName = photo.originalname;
-        const filePath = path.join(uploadDir, photoName);
-        //Verifico que existe el directorio, si no, lo creo
-        await fs.mkdir(uploadDir, { recursive: true });
-        await fs.writeFile(filePath, photo.buffer);
         console.log(status);
         const food = new Food({
             name,
-            photoName,
+            photo,
             calories,
             status
         });

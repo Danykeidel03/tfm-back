@@ -4,7 +4,8 @@ const multer = require('multer');
 const userController = require('../controllers/userController');
 const authMiddleware = require('../middlewares/authMiddleware');
 const validateEmailData = require('../middlewares/validateEmailData');
-const upload = multer({ storage: multer.memoryStorage() });
+const { storage } = require('../config/cloudinary');
+const upload = multer({ storage });
 
 router.post('/', upload.single('photo'), validateEmailData, userController.resgiterUser);
 router.post('/login', upload.none(), userController.loginUser);

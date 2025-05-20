@@ -7,7 +7,7 @@ const registerController = {
     async (request, response) => {
       try {
         const { name, calories } = request.body;
-        const photo = request.file;
+        const photo = req.file.path;
         const data = await newFood(
           name,
           photo,

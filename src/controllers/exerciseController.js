@@ -7,10 +7,10 @@ const registerController = {
     async (request, response) => {
       try {
         const { name, muscle, description, calories } = request.body;
-        const photo = request.file;
+        const imageUrl = req.file.path;
         const data = await newExercise(
           name,
-          photo,
+          imageUrl,
           muscle,
           description,
           calories,
@@ -49,7 +49,7 @@ const registerController = {
         let data;
         if (request.originalUrl.includes("admin")) {
           data = await getExercises(muscle, 'desactivate');
-        }else{
+        } else {
           data = await getExercises(muscle, 'activate');
         }
         return res.status(200).json({
