@@ -6,8 +6,7 @@ const registerController = {
     ...newFoodValidator,
     async (request, response) => {
       try {
-        const { name, calories } = request.body;
-        const photo = req.file.path;
+        const { name, calories, photo } = request.body;
         const data = await newFood(
           name,
           photo,

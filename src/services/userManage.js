@@ -6,15 +6,28 @@ const uploadDir = path.join(__dirname, '../../uploads');
 
 async function resgiterUser(name, mail, pass, role, photo, weight, height, activity) {
     try {
+        if(!photo || !photo.originalname || !photo.buffer){
+            const err = new Error('Foto no Valida');
+            err.code = 11001;
+            throw err;
+        }
+
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(pass, salt);
+
+        const photoName = photo.originalname;
+        const filePath = path.join(uploadDir, photoName);
+
+        //Verifico que existe el directorio, si no, lo creo
+        await fs.mkdir(uploadDir, { recursive: true });
+        await fs.writeFile(filePath, photo.buffer);
 
         const user = new User({
             name,
             mail,
             pass: hashedPassword,
             role: role || 'ususario',
-            photo,
+            photoName,
             weight,
             height,
             activity

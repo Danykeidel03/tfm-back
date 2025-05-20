@@ -16,14 +16,15 @@ const registerController = {
     ...createUserValidators,
     async (request, response) => {
       try {
-        const { name, mail, pass, role, weight, height, activity } = request.body;
-        const imageUrl = req.file.path;
+        const { name, mail, pass, role, weight, height, activity } =
+          request.body;
+        const photo = request.file;
         const data = await resgiterUser(
           name,
           mail,
           pass,
           role,
-          imageUrl,
+          photo,
           weight,
           height,
           activity
@@ -76,8 +77,8 @@ const registerController = {
           } else {
             res.cookie("token", token, {
               httpOnly: true,
-              secure: true,
-              sameSite: "None",
+              secure: false,
+              sameSite: "Lax",
               maxAge: 3600000,
               path: "/",
             });
@@ -93,8 +94,8 @@ const registerController = {
         } else {
           res.cookie("token", token, {
             httpOnly: true,
-            secure: true,
-            sameSite: "None",
+            secure: false,
+            sameSite: "Lax",
             maxAge: 3600000,
             path: "/",
           });

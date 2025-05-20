@@ -3,8 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const exerciseController = require('../controllers/exerciseController');
 const authMiddleware = require('../middlewares/authMiddleware');
-const { storage } = require('../config/cloudinary');
-const upload = multer({ storage });
+const upload = multer({ storage: multer.memoryStorage() });
 
 router.post('/', upload.single('photo'), exerciseController.newExercise);
 router.get('/:muscle', exerciseController.getExercise);

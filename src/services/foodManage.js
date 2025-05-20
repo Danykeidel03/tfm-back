@@ -3,12 +3,11 @@ const fs = require('fs').promises;
 const path = require('path');
 const uploadDir = path.join(__dirname, '../../uploads/food');
 
-async function newFood(name, photo, calories, status) {
+async function newFood(name, photoName, calories, status) {
     try {
-        console.log(status);
         const food = new Food({
             name,
-            photo,
+            photoName,
             calories,
             status
         });

@@ -3,8 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const foodController = require('../controllers/foodController');
 const authMiddleware = require('../middlewares/authMiddleware');
-const { storage } = require('../config/cloudinary');
-const upload = multer({ storage });
+const upload = multer({ storage: multer.memoryStorage() });
 
 router.post('/', upload.single('photo'), foodController.newFood);
 router.get('/', foodController.getFood);

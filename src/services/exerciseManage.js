@@ -1,12 +1,13 @@
 const Exercise = require('../models/Exercise');
 const fs = require('fs').promises;
 const path = require('path');
+const uploadDir = path.join(__dirname, '../../uploads/exercise');
 
-async function newExercise(name, photo, muscle, description, calories, status) {
+async function newExercise(name, photoName, muscle, description, calories, status) {
     try {
-            const exercise = new Exercise({
+        const exercise = new Exercise({
             name,
-            photo,
+            photoName,
             muscle,
             description,
             calories,
