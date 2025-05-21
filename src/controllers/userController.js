@@ -70,14 +70,16 @@ const registerController = {
           secretKey,
           { expiresIn: "1h" }
         );
+        const isProduction = process.env.NODE_ENV === "production";
+
         if (request.originalUrl.includes("admin")) {
           if (data.role !== "admin") {
             return res.status(401).json({ error: "Uso Limitado", code: 401 });
           } else {
             res.cookie("token", token, {
               httpOnly: true,
-              secure: false,
-              sameSite: "Lax",
+              secure: isProduction,
+              sameSite: isProduction ? "None" : "Lax",
               maxAge: 3600000,
               path: "/",
             });
@@ -93,8 +95,8 @@ const registerController = {
         } else {
           res.cookie("token", token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "Lax",
+            secure: isProduction,
+            sameSite: isProduction ? "None" : "Lax",
             maxAge: 3600000,
             path: "/",
           });
