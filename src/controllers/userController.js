@@ -82,6 +82,7 @@ const registerController = {
               sameSite: isProduction ? "None" : "Lax",
               maxAge: 3600000,
               path: "/",
+              partitioned: true,
             });
             console.log("Cookies metidas");
             return res.status(200).json({
@@ -99,6 +100,7 @@ const registerController = {
             sameSite: isProduction ? "None" : "Lax",
             maxAge: 3600000,
             path: "/",
+            partitioned: true,
           });
           console.log("Cookies metidas");
           return res.status(200).json({
