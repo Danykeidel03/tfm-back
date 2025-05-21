@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const uploadDir = path.join(__dirname, '../../uploads');
 
-async function resgiterUser(name, mail, pass, role, photo, weight, height, activity) {
+async function resgiterUser(name, mail, pass, role, photoName, weight, height, activity) {
     try {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(pass, salt);
@@ -14,7 +14,7 @@ async function resgiterUser(name, mail, pass, role, photo, weight, height, activ
             mail,
             pass: hashedPassword,
             role: role || 'ususario',
-            photo,
+            photoName,
             weight,
             height,
             activity
