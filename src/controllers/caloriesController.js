@@ -1,4 +1,4 @@
-const { newRoutineCalories } = require("../services/caloriesManage");
+const { newRoutineCalories, getCalories } = require("../services/caloriesManage");
 const newFoodValidator = require("../validations/caloriesValidator");
 const jwt = require("jsonwebtoken");
 const secretKey = "estoesunaclavesecretaquenadiesabrajamas";
@@ -33,6 +33,18 @@ const registerController = {
       }
     },
   ],
+  getRutineCalories: [
+    async (request, response) => {
+      try {
+        const token = request.cookies.token;
+        const decoded = jwt.verify(token, secretKey);
+        let mailUser = decoded.mailUser;
+        const data = await getCalories(mailUser);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+  ]
 };
 
 module.exports = registerController;

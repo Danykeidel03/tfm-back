@@ -14,4 +14,13 @@ async function newRoutineCalories(mailUser, calories) {
     }
 }
 
-module.exports = { newRoutineCalories };
+async function getCalories(mailUser) {
+    try {
+        const calories = await Calories.find({ mailUser }).sort({ fecha: -1 });
+        return calories;
+    } catch (e) {
+        return e;
+    }
+}
+
+module.exports = { newRoutineCalories, getCalories };
