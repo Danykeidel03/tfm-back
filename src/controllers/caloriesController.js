@@ -40,6 +40,7 @@ const registerController = {
         const decoded = jwt.verify(token, secretKey);
         let mailUser = decoded.mailUser;
         const data = await getCalories(mailUser);
+        return data
       } catch (e) {
         console.log(e);
       }
