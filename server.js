@@ -8,7 +8,10 @@ const initWebSocket = require('./src/config/websocket');
         await connectBD();
         const server = http.createServer(app);
         initWebSocket(server);
-        server.listen(3000, () => console.log('Servidor escuchando en el puerto 3000'));
+        const PORT = process.env.PORT || 3000;
+        server.listen(PORT, () => {
+            console.log(`Servidor escuchando en el puerto ${PORT}`);
+        });
     } catch (e) {
         console.error('No se ha podido levantar el servidor:', e);
     }

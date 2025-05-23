@@ -1,6 +1,7 @@
 const WebSocket = require('ws');
 const jwt = require('jsonwebtoken');
 const cookie = require('cookie');
+
 const secretKey = 'estoesunaclavesecretaquenadiesabrajamas';
 
 module.exports = (server) => {
@@ -39,5 +40,4 @@ module.exports = (server) => {
             ws.close();
         }
     });
-
 };
