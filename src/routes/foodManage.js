@@ -5,7 +5,7 @@ const foodController = require('../controllers/foodController');
 const authMiddleware = require('../middlewares/authMiddleware');
 const upload = multer({ storage: multer.memoryStorage() });
 
-router.post('/', authMiddleware.verificarToken, authMiddleware.verificarRol(['admin']), upload.single('photo'), foodController.newFood);
+router.post('/', authMiddleware.verificarToken, upload.single('photo'), foodController.newFood);
 router.get('/', foodController.getFood);
 router.get('/admin/', authMiddleware.verificarToken, authMiddleware.verificarRol(['admin']), foodController.getFood);
 router.put('/admin/update/:id', authMiddleware.verificarToken, authMiddleware.verificarRol(['admin']), foodController.updateStatusFood);
